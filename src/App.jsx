@@ -7,6 +7,7 @@ import React, { Suspense, lazy, useState, useEffect } from 'react'
 import { CartProvider } from './context/CartContext'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import AuthModal from './components/AuthModal'
+import ScrollToTopOnMount from './components/ScrollToTopOnMount'
 
 // Lazy load components
 const Home = lazy(() => import('./components/Home'))
@@ -33,6 +34,7 @@ function ProtectedApp() {
       <CartProvider>
         <ErrorBoundary>
           <Router>
+            <ScrollToTopOnMount />
             <div className='app'>
               <Suspense fallback={<div>Cargando...</div>}>
                 <Navbar />
