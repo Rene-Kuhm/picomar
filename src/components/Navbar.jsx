@@ -81,11 +81,12 @@ function Navbar() {
             sx={{ textDecoration: 'none' }}
           >
             <img
-              src='/src/assets/logo-picomar-Photoroom.png'
+              src='/images/logo-picomar-Photoroom.png'
               alt='Picomar'
               style={{
+                height: '60px',
+                width: 'auto',
                 objectFit: 'contain',
-                maxWidth: 'none', // Asegura que la imagen mantenga sus proporciones
               }}
             />
             <Typography variant='h1'>PICOMAR</Typography>
