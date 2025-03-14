@@ -1,73 +1,90 @@
-# Picomar - Plataforma de Comercio Electrónico de Productos del Mar
+# Picomar - E-commerce de Productos del Mar
 
 ## Descripción
 
-Picomar es una aplicación web moderna para la venta de productos del mar, desarrollada con React y Material-UI. La plataforma ofrece una experiencia de compra completa con autenticación de usuarios, catálogo de productos, carrito de compras y sistema de pedidos.
+Plataforma de comercio electrónico especializada en productos del mar, con más de 60 años de historia en General Pico, La Pampa. Desarrollada con React y MaterialUI, ofrece una experiencia de compra moderna y eficiente.
 
-## Características Principales
+## Características Implementadas
 
-### Autenticación
+### Autenticación y Usuario
 
-- Sistema de login/registro
-- Protección de rutas
-- Usuario de prueba incorporado
-- Persistencia de sesión
+- Sistema de login/registro con validación
+- Perfil de usuario personalizado
+- Dashboard con estadísticas de compras
+- Historial de pedidos y seguimiento
+- Protección de rutas para usuarios autenticados
 
 ### Catálogo de Productos
 
-- Listado de productos con imágenes y descripciones detalladas
+- Visualización en grid con diseño responsive
 - Filtrado por nombre y código
 - Opciones de compra por unidad o caja
-- Categorización de productos
-- Precios diferenciados por tipo de compra
+- Precios diferenciados mayorista/minorista
+- Imágenes y descripciones detalladas
+- Categorización Premium/Clásico
+- Efectos de hover y animaciones suaves
 
 ### Carrito de Compras
 
 - Gestión completa de productos
 - Cálculo automático de totales
-- Proceso de checkout en pasos
-- Múltiples métodos de pago
+- Proceso de checkout en 4 pasos:
+  1. Revisión del carrito
+  2. Datos de envío
+  3. Método de pago
+  4. Confirmación
+- Múltiples métodos de pago implementados
 - Validación de formularios
-- Confirmación de pedidos
-
-### Perfil de Usuario
-
-- Historial de pedidos
-- Estado de envíos
-- Estadísticas de compras
-- Información personal
+- Confirmación de pedido con feedback
 
 ### Diseño y UI/UX
 
-- Diseño responsive
-- Animaciones y transiciones suaves
-- Componentes interactivos
-- Feedback visual para acciones
-- Temas personalizados
-- Estilos modulares
+- Navbar responsive con menú móvil
+- Hero section con efecto parallax
+- Animaciones GSAP para scrolling
+- Wave effects y glassmorphism
+- Timeline animado en sección "Nosotros"
+- Efectos de hover personalizados
+- ScrollToTop component
+- Loading states y feedback visual
+
+### Secciones Principales
+
+- Home con showcasing de productos
+- Catálogo completo de productos
+- Página "Nosotros" con historia desde 1961
+- Contacto con formulario y mapa
+- Perfil de usuario con tracking
 
 ## Tecnologías Utilizadas
 
-### Frontend
+### Core
 
-- React 18
-- Material-UI v5
+- React 19
+- MaterialUI v5
 - React Router v6
-- Context API para gestión de estado
-- Lazy Loading para optimización
+- Context API (Auth y Cart)
 
-### Estilizado
+### Animaciones y Efectos
 
-- Styled Components
-- CSS-in-JS
-- Sistema de diseño personalizado
-- Responsive design
+- GSAP
+- Framer Motion
+- AOS
+- Swiper
+- Custom animations
 
 ### Optimización
 
-- Code splitting
 - Lazy loading de componentes
-- Suspense para carga
-- ErrorBoundary para manejo de errores
+- Code splitting
+- Error boundaries
+- Performance optimizations
+
+### Estilos
+
+- Styled Components
+- CSS-in-JS
+- Custom theme
+- Responsive design
 
 ## Estructura del Proyecto
