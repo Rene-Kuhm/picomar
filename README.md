@@ -40,13 +40,49 @@ Plataforma de comercio electrónico especializada en productos del mar, con más
 ### Diseño y UI/UX
 
 - Navbar responsive con menú móvil
-- Hero section con efecto parallax
-- Animaciones GSAP para scrolling
-- Wave effects y glassmorphism
-- Timeline animado en sección "Nosotros"
-- Efectos de hover personalizados
-- ScrollToTop component
-- Loading states y feedback visual
+- Diseño 100% responsive (mobile-first approach)
+- Sistema de grid adaptativo usando MaterialUI Grid
+- Menú hamburguesa con animación suave
+- Media queries optimizadas
+- Tipografía fluida (clamp)
+- Hero section con efecto parallax responsive
+- Componentes flexibles y adaptables
+- Animaciones optimizadas por dispositivo
+
+### Responsive Design
+
+#### Breakpoints Implementados
+
+- Mobile: 320px - 480px
+- Tablet: 481px - 768px
+- Laptop: 769px - 1024px
+- Desktop: 1025px - 1200px
+- Large Desktop: 1201px+
+
+#### Características Responsive
+
+- Layout fluido con Grid y Flexbox
+- Imágenes responsivas con srcset y sizes
+- Tipografía fluida usando clamp()
+- Stack navigation en móvil
+- Side navigation en desktop
+- Carrito adaptativo
+- Cards redimensionables
+- Tablas scrolleables en móvil
+- Forms adaptables
+- Botones y CTAs optimizados
+- Touch targets adecuados (mínimo 44px)
+
+#### Optimizaciones Mobile
+
+- Lazy loading priorizado
+- Imágenes WebP con fallbacks
+- Reducción de JS en bundle móvil
+- Touch gestures implementados
+- Offline support
+- App shell architecture
+- Skeleton screens
+- Pull-to-refresh
 
 ### Secciones Principales
 
@@ -82,10 +118,15 @@ Plataforma de comercio electrónico especializada en productos del mar, con más
 
 ### Estilos
 
-- Styled Components
-- CSS-in-JS
-- Custom theme
-- Responsive design
+- Styled Components con props responsive
+- MaterialUI Theme personalizado
+- CSS Grid y Flexbox
+- CSS Variables
+- Custom Media Queries
+- Utility classes responsive
+- Container queries donde aplica
+- Aspect-ratio boxes
+- Fluid spacing units
 
 ## Performance
 

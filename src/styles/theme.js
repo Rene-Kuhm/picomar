@@ -63,14 +63,20 @@ export const theme = createTheme({
     h1: {
       fontFamily: 'Poppins',
       fontWeight: 700,
+      fontSize: 'clamp(1.8rem, 4vw, 3.5rem)',
+      lineHeight: 1.2,
     },
     h2: {
       fontFamily: 'Poppins',
       fontWeight: 600,
+      fontSize: 'clamp(1.5rem, 3.5vw, 3rem)',
+      lineHeight: 1.3,
     },
     h3: {
       fontFamily: 'Poppins',
       fontWeight: 600,
+      fontSize: 'clamp(1.2rem, 3vw, 2.4rem)',
+      lineHeight: 1.4,
     },
     button: {
       fontFamily: 'Poppins',
@@ -79,6 +85,17 @@ export const theme = createTheme({
     body1: {
       fontFamily: 'Poppins',
       fontWeight: 400,
+      fontSize: 'clamp(0.875rem, 2vw, 1.1rem)',
+      lineHeight: 1.6,
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 481,
+      md: 769,
+      lg: 1025,
+      xl: 1201,
     },
   },
   components: {
@@ -91,6 +108,10 @@ export const theme = createTheme({
           transition: 'all 0.3s ease',
           '&:hover': {
             transform: 'translateY(-2px)',
+          },
+          '@media (max-width: 600px)': {
+            fontSize: '0.875rem',
+            padding: '6px 16px',
           },
         },
         contained: {
@@ -107,6 +128,25 @@ export const theme = createTheme({
           borderRadius: '16px',
           backdropFilter: 'blur(10px)',
           transition: 'all 0.3s ease',
+          '@media (max-width: 600px)': {
+            borderRadius: '12px',
+          },
+        },
+      },
+    },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          padding: '0 16px',
+          '@media (min-width: 481px)': {
+            padding: '0 24px',
+          },
+          '@media (min-width: 769px)': {
+            padding: '0 32px',
+          },
+          '@media (max-width: 600px)': {
+            padding: '0 12px',
+          },
         },
       },
     },

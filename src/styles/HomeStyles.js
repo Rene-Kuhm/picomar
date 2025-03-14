@@ -39,6 +39,18 @@ export const StyledHero = styled(Box)`
     height: 150px;
     background: linear-gradient(to top, rgba(248, 250, 252, 1), transparent);
   }
+  min-height: clamp(400px, 100vh, 800px);
+  padding: clamp(1rem, 5vw, 3rem);
+  
+  @media (max-width: 768px) {
+    background-attachment: scroll;
+  }
+
+  @media (max-width: 600px) {
+    min-height: calc(100vh - 56px);
+    padding: 32px 16px;
+    background-attachment: scroll;
+  }
 `
 
 export const StyledContent = styled(Box)({
@@ -143,6 +155,24 @@ export const ProductCard = styled(Card)(({ theme }) => ({
       boxShadow: '0 6px 20px rgba(23,177,212,0.4)',
     },
   },
+  [theme.breakpoints.down('sm')]: {
+    '& .MuiCardMedia-root': {
+      height: '200px',
+    },
+    '& .MuiCardContent-root': {
+      padding: '16px',
+    },
+    '& .MuiTypography-h5': {
+      fontSize: '1.1rem',
+    },
+    '& .MuiTypography-body2': {
+      fontSize: '0.875rem',
+    },
+    '& .MuiButton-root': {
+      width: '100%',
+      marginTop: '8px',
+    },
+  },
 }))
 
 export const WorkerSection = styled(Box)({
@@ -165,6 +195,13 @@ export const CircularProductSection = styled(Box)(({ theme }) => ({
     top: '-100px',
     right: '-100px',
     zIndex: 0,
+  },
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(4, 0),
+    '& img': {
+      borderRadius: '16px',
+      marginTop: '16px',
+    },
   },
 }))
 

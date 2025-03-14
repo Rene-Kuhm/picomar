@@ -6,6 +6,15 @@ export const ProductHeader = styled(Box)(({ theme }) => ({
   background: 'linear-gradient(135deg, #003876 0%, #0056b3 100%)',
   color: 'white',
   marginBottom: theme.spacing(6),
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(3, 0),
+    '& .MuiTypography-h2': {
+      fontSize: '1.75rem',
+    },
+    '& .MuiTypography-h5': {
+      fontSize: '1rem',
+    },
+  },
 }))
 
 export const DetailedProductCard = styled(Card)(({ theme }) => ({
@@ -44,7 +53,7 @@ export const DetailedProductCard = styled(Card)(({ theme }) => ({
   },
 
   '& .MuiCardMedia-root': {
-    height: 280,
+    height: 'clamp(200px, 30vw, 280px)',
     transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
     '&:after': {
       content: '""',
@@ -94,6 +103,33 @@ export const DetailedProductCard = styled(Card)(({ theme }) => ({
     background: 'rgba(255,255,255,0.9)',
     backdropFilter: 'blur(10px)',
     borderTop: '1px solid rgba(255,255,255,0.5)',
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    '& .MuiCardMedia-root': {
+      height: '200px',
+    },
+    '& .MuiCardContent-root': {
+      padding: '12px',
+    },
+    '& .MuiTypography-h5': {
+      fontSize: '1rem',
+      marginBottom: '4px',
+    },
+    '& .MuiTypography-body2': {
+      fontSize: '0.875rem',
+    },
+    '& .MuiButton-contained': {
+      width: '100%',
+      padding: '8px 16px',
+      marginTop: '8px',
+    },
+    '& .MuiChip-root': {
+      fontSize: '0.75rem',
+    },
+    '& .MuiFormControl-root': {
+      marginTop: '8px',
+    },
   },
 }))
 

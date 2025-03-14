@@ -21,12 +21,13 @@ export const WaveText = styled(Typography)`
     }
   }
 
-  font-size: 4.5rem;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   position: relative;
   display: inline-block;
+  text-align: center;
 
   &::before {
     content: 'PICOMAR';
@@ -83,5 +84,13 @@ export const WaveText = styled(Typography)`
     color: transparent;
     animation: wave 4s infinite linear;
     transform: translateZ(0);
+  }
+
+  @media (max-width: 768px) {
+    letter-spacing: 0.05em;
+    &::before,
+    &::after {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+    }
   }
 `
