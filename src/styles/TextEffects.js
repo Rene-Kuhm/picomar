@@ -12,17 +12,51 @@ export const WaveText = styled(Typography)`
     }
   }
 
+  @keyframes shine {
+    0% {
+      background-position: -100% 0;
+    }
+    100% {
+      background-position: 300% 0;
+    }
+  }
+
   font-size: 4.5rem;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  position: relative;
+  display: inline-block;
+
+  &::before {
+    content: 'PICOMAR';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(255, 255, 255, 0) 70%,
+      transparent 100%
+    );
+    background-size: 300% 100%;
+    animation: shine 3s infinite linear;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    z-index: 2;
+  }
+
   background: linear-gradient(
     45deg,
-    #003876,
-    #0056b3,
-    #e31e24,
+    #00bfff,
     #ffffff,
-    #003876
+    #87ceeb,
+    #ffffff,
+    #00bfff
   );
   background-size: 200% auto;
   color: transparent;
@@ -30,8 +64,7 @@ export const WaveText = styled(Typography)`
   background-clip: text;
   animation: wave 8s linear infinite;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  position: relative;
-  display: inline-block;
+  z-index: 1;
 
   &::after {
     content: 'PICOMAR';
@@ -40,9 +73,9 @@ export const WaveText = styled(Typography)`
     top: 0;
     background: linear-gradient(
       transparent 40%,
-      rgba(255, 255, 255, 0.3) 45%,
+      rgba(135, 206, 235, 0.3) 45%,
       rgba(255, 255, 255, 0.4) 50%,
-      rgba(255, 255, 255, 0.3) 55%,
+      rgba(135, 206, 235, 0.3) 55%,
       transparent 60%
     );
     -webkit-background-clip: text;

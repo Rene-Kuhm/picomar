@@ -3,20 +3,36 @@ import { createTheme } from '@mui/material'
 export const theme = createTheme({
   palette: {
     primary: {
-      main: '#003876', // Azul marino corporativo
-      light: '#0056b3',
-      dark: '#002654',
+      main: '#1e3d59', // Azul marino profundo
+      light: '#2c5282',
+      dark: '#152a3b',
     },
     secondary: {
-      main: '#E31E24', // Rojo corporativo
-      light: '#ff1744',
-      dark: '#b71c1c',
+      main: '#ff6e40', // Naranja coral
+      light: '#ff9e80',
+      dark: '#c53d13',
+    },
+    accent: {
+      blue: '#17b1d4',
+      coral: '#ff6b6b',
+      teal: '#48b4aa',
+      gold: '#ffd700',
     },
     background: {
-      default: '#FFFFFF', // Blanco
-      paper: '#F8FAFC',
+      default: '#f8fafc',
+      paper: '#ffffff',
+      gradient: 'linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%)',
+    },
+    text: {
+      primary: '#2d3748',
+      secondary: '#4a5568',
     },
   },
+  shadows: [
+    'none',
+    '0 2px 4px rgba(0,0,0,0.05)',
+    '0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)', // Custom shadow for cards
+  ],
   typography: {
     fontFamily: '"Poppins", "Roboto", "Arial", sans-serif',
     h1: {

@@ -37,22 +37,25 @@ function Footer() {
             <SocialIcons>
               <IconButton
                 color='inherit'
-                href='https://facebook.com'
+                href='https://www.facebook.com/picomar'
                 target='_blank'
+                rel='noopener noreferrer'
               >
                 <FacebookIcon />
               </IconButton>
               <IconButton
                 color='inherit'
-                href='https://instagram.com'
+                href='https://www.instagram.com/picomar'
                 target='_blank'
+                rel='noopener noreferrer'
               >
                 <InstagramIcon />
               </IconButton>
               <IconButton
                 color='inherit'
-                href='https://wa.me/1234567890'
+                href='https://wa.me/5492302123456'
                 target='_blank'
+                rel='noopener noreferrer'
               >
                 <WhatsAppIcon />
               </IconButton>

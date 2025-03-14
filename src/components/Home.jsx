@@ -25,6 +25,7 @@ import calamarImage from '../assets/480807899_1144446504147624_87521719400065382
 import workerImage from '../assets/480807899_1144446504147624_875217194000653829_n.jpg'
 import salmonImage from '../assets/481175936_1148146223777652_8805090957314308641_n.jpg'
 import { WaveText } from '../styles/TextEffects'
+import { Link } from 'react-router-dom'
 
 function Home() {
   const products = [
@@ -64,6 +65,8 @@ function Home() {
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <Button
+                component={Link}
+                to='/productos'
                 variant='contained'
                 color='secondary'
                 size='large'
@@ -84,6 +87,8 @@ function Home() {
                 Ver Productos
               </Button>
               <Button
+                component={Link}
+                to='/nosotros'
                 variant='outlined'
                 sx={{
                   py: 2,

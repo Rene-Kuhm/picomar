@@ -179,7 +179,7 @@ function Navbar() {
               <AccountCircleIcon />
             </IconButton>
             <IconButton
-              href='https://facebook.com'
+              href='https://www.facebook.com/picomar'
               target='_blank'
               rel='noopener noreferrer'
               sx={{ color: theme.palette.primary.main }}
@@ -187,7 +187,7 @@ function Navbar() {
               <FacebookIcon />
             </IconButton>
             <IconButton
-              href='https://instagram.com'
+              href='https://www.instagram.com/picomar'
               target='_blank'
               rel='noopener noreferrer'
               sx={{ color: theme.palette.primary.main }}
@@ -195,7 +195,7 @@ function Navbar() {
               <InstagramIcon />
             </IconButton>
             <IconButton
-              href='https://wa.me/1234567890'
+              href='https://wa.me/5492302123456'
               target='_blank'
               rel='noopener noreferrer'
               sx={{ color: theme.palette.primary.main }}

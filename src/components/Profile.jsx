@@ -67,113 +67,115 @@ function Profile() {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Grid container spacing={4}>
-        {/* Perfil Header */}
-        <Grid item xs={12}>
-          <Paper sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 3 }}>
-            <Avatar sx={{ width: 80, height: 80, bgcolor: 'primary.main' }}>
-              <PersonIcon fontSize="large" />
-            </Avatar>
-            <Box>
-              <Typography variant="h4">{user?.nombre} {user?.apellido}</Typography>
-              <Typography color="text.secondary">{user?.email}</Typography>
-            </Box>
-          </Paper>
-        </Grid>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <Container maxWidth="lg" sx={{ py: 6, flex: 1 }}>
+        <Grid container spacing={4}>
+          {/* Perfil Header */}
+          <Grid item xs={12}>
+            <Paper sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 3 }}>
+              <Avatar sx={{ width: 80, height: 80, bgcolor: 'primary.main' }}>
+                <PersonIcon fontSize="large" />
+              </Avatar>
+              <Box>
+                <Typography variant="h4">{user?.nombre} {user?.apellido}</Typography>
+                <Typography color="text.secondary">{user?.email}</Typography>
+              </Box>
+            </Paper>
+          </Grid>
 
-        {/* Estadísticas */}
-        <Grid item xs={12}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={4}>
-              <Paper sx={{ p: 3 }}>
-                <Typography variant="subtitle2" color="text.secondary">
-                  Gasto Semanal
-                </Typography>
-                <Typography variant="h4" color="primary">
-                  ${mockStats.week.toLocaleString()}
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Paper sx={{ p: 3 }}>
-                <Typography variant="subtitle2" color="text.secondary">
-                  Gasto Mensual
-                </Typography>
-                <Typography variant="h4" color="primary">
-                  ${mockStats.month.toLocaleString()}
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Paper sx={{ p: 3 }}>
-                <Typography variant="subtitle2" color="text.secondary">
-                  Gasto Anual
-                </Typography>
-                <Typography variant="h4" color="primary">
-                  ${mockStats.year.toLocaleString()}
-                </Typography>
-              </Paper>
+          {/* Estadísticas */}
+          <Grid item xs={12}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={4}>
+                <Paper sx={{ p: 3 }}>
+                  <Typography variant="subtitle2" color="text.secondary">
+                    Gasto Semanal
+                  </Typography>
+                  <Typography variant="h4" color="primary">
+                    ${mockStats.week.toLocaleString()}
+                  </Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Paper sx={{ p: 3 }}>
+                  <Typography variant="subtitle2" color="text.secondary">
+                    Gasto Mensual
+                  </Typography>
+                  <Typography variant="h4" color="primary">
+                    ${mockStats.month.toLocaleString()}
+                  </Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Paper sx={{ p: 3 }}>
+                  <Typography variant="subtitle2" color="text.secondary">
+                    Gasto Anual
+                  </Typography>
+                  <Typography variant="h4" color="primary">
+                    ${mockStats.year.toLocaleString()}
+                  </Typography>
+                </Paper>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
 
-        {/* Pedidos */}
-        <Grid item xs={12}>
-          <Paper sx={{ p: 3 }}>
-            <Tabs value={activeTab} onChange={(e, v) => setActiveTab(v)} sx={{ mb: 3 }}>
-              <Tab label="Pedidos Recientes" />
-              <Tab label="En Proceso" />
-              <Tab label="Historial" />
-            </Tabs>
+          {/* Pedidos */}
+          <Grid item xs={12}>
+            <Paper sx={{ p: 3 }}>
+              <Tabs value={activeTab} onChange={(e, v) => setActiveTab(v)} sx={{ mb: 3 }}>
+                <Tab label="Pedidos Recientes" />
+                <Tab label="En Proceso" />
+                <Tab label="Historial" />
+              </Tabs>
 
-            {mockOrders.map((order, index) => (
-              <Box key={order.id} sx={{ mb: 3 }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                  <Box>
-                    <Typography variant="h6">
-                      Pedido {order.id}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Fecha: {new Date(order.date).toLocaleDateString()}
-                    </Typography>
+              {mockOrders.map((order, index) => (
+                <Box key={order.id} sx={{ mb: 3 }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+                    <Box>
+                      <Typography variant="h6">
+                        Pedido {order.id}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Fecha: {new Date(order.date).toLocaleDateString()}
+                      </Typography>
+                    </Box>
+                    <Box sx={{ textAlign: 'right' }}>
+                      <Chip
+                        label={order.status}
+                        color={getStatusColor(order.status)}
+                        sx={{ mb: 1 }}
+                      />
+                      <Typography variant="h6" color="primary">
+                        ${order.total.toLocaleString()}
+                      </Typography>
+                    </Box>
                   </Box>
-                  <Box sx={{ textAlign: 'right' }}>
-                    <Chip
-                      label={order.status}
-                      color={getStatusColor(order.status)}
-                      sx={{ mb: 1 }}
-                    />
-                    <Typography variant="h6" color="primary">
-                      ${order.total.toLocaleString()}
-                    </Typography>
+
+                  <Box sx={{ mb: 2 }}>
+                    {order.items.map((item, idx) => (
+                      <Typography key={idx} variant="body2" color="text.secondary">
+                        {item.quantity}x {item.name} - ${item.price.toLocaleString()}
+                      </Typography>
+                    ))}
                   </Box>
+
+                  {order.status === 'En proceso' && (
+                    <Box sx={{ mt: 2 }}>
+                      <Typography variant="body2" color="text.secondary" gutterBottom>
+                        Estado del envío
+                      </Typography>
+                      <LinearProgress variant="determinate" value={60} />
+                    </Box>
+                  )}
+
+                  {index < mockOrders.length - 1 && <Divider sx={{ mt: 2 }} />}
                 </Box>
-
-                <Box sx={{ mb: 2 }}>
-                  {order.items.map((item, idx) => (
-                    <Typography key={idx} variant="body2" color="text.secondary">
-                      {item.quantity}x {item.name} - ${item.price.toLocaleString()}
-                    </Typography>
-                  ))}
-                </Box>
-
-                {order.status === 'En proceso' && (
-                  <Box sx={{ mt: 2 }}>
-                    <Typography variant="body2" color="text.secondary" gutterBottom>
-                      Estado del envío
-                    </Typography>
-                    <LinearProgress variant="determinate" value={60} />
-                  </Box>
-                )}
-
-                {index < mockOrders.length - 1 && <Divider sx={{ mt: 2 }} />}
-              </Box>
-            ))}
-          </Paper>
+              ))}
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </div>
   )
 }
 
