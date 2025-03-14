@@ -8,17 +8,15 @@ export const WaveContainer = styled(Box)({
   width: '100%',
   overflow: 'hidden',
   lineHeight: 0,
+  transform: 'rotate(180deg)',
   '& svg': {
     position: 'relative',
     display: 'block',
-    width: '100%',
-    height: '180px',
-    background: 'transparent',
-    marginBottom: -2,
+    width: 'calc(130% + 1.3px)',
+    height: '150px',
   },
-  '& path': {
-    fill: '#003876', // Azul corporativo
-    fillOpacity: '1',
+  '& .shape-fill': {
+    fill: '#FFFFFF',
   },
 })
 
@@ -35,9 +33,9 @@ export const StyledHero = styled(Box)`
   &::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0,
+    left: 0,
+    right: 0,
     height: 150px;
     background: linear-gradient(to top, rgba(248, 250, 252, 1), transparent);
   }
@@ -95,13 +93,16 @@ export const ProductCard = styled(Card)(({ theme }) => ({
   },
 
   '&:hover': {
-    transform: 'translateY(-12px) scale(1.02)',
-    boxShadow: theme.shadows[20],
+    transform: 'translateY(-10px) scale(1.02)',
+    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.12)',
     '&:before': {
       opacity: 1,
     },
     '& .MuiCardMedia-root': {
-      transform: 'scale(1.1) rotate(2deg)',
+      transform: 'scale(1.1)',
+    },
+    '& .card-content': {
+      background: `linear-gradient(135deg, ${theme.palette.background.glassLight} 0%, rgba(255,255,255,0.95) 100%)`,
     },
   },
 
@@ -164,5 +165,41 @@ export const CircularProductSection = styled(Box)(({ theme }) => ({
     top: '-100px',
     right: '-100px',
     zIndex: 0,
+  },
+}))
+
+export const StyledSwiper = styled('div')({
+  '.swiper-pagination-bullet-active': {
+    backgroundColor: '#003876',
+  },
+  '.swiper-slide': {
+    transition: 'transform 0.3s ease',
+    '&:hover': {
+      transform: 'translateY(-10px)',
+    },
+  },
+})
+
+export const GlassBox = styled(Box)(({ theme }) => ({
+  background: theme.palette.background.glassLight,
+  backdropFilter: 'blur(10px)',
+  borderRadius: '24px',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+}))
+
+export const HeroContent = styled(Box)(({ theme }) => ({
+  position: 'relative',
+  zIndex: 2,
+  padding: theme.spacing(4),
+  borderRadius: '30px',
+  background: 'rgba(255, 255, 255, 0.1)',
+  backdropFilter: 'blur(10px)',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    background: 'rgba(255, 255, 255, 0.15)',
+    transform: 'translateY(-5px)',
   },
 }))

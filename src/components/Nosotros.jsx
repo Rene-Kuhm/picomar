@@ -40,30 +40,52 @@ function Nosotros() {
 
   const timeline = [
     {
-      year: '1968',
-      title: 'Los Inicios',
-      description: 'Apertura del primer local en General Pico, La Pampa.',
-    },
-    {
-      year: '1980',
-      title: 'Expansión Regional',
-      description: 'Comenzamos a distribuir productos en toda la provincia.',
-    },
-    {
-      year: '1995',
-      title: 'Modernización',
-      description: 'Implementación de sistemas de refrigeración avanzados.',
-    },
-    {
-      year: '2010',
-      title: 'Líder del Mercado',
+      year: '1961',
+      title: 'El Comienzo',
       description:
-        'Nos convertimos en el distribuidor más grande de la región.',
+        'Don Roberto Martínez funda Picomar en General Pico, La Pampa, con un pequeño puesto de venta de pescado fresco.',
     },
     {
-      year: '2024',
-      title: 'Innovación Continua',
-      description: 'Implementación de nuevas tecnologías y expansión nacional.',
+      year: '1970',
+      title: 'Primera Expansión',
+      description:
+        'Apertura del primer local comercial propio y adquisición del primer camión refrigerado.',
+    },
+    {
+      year: '1985',
+      title: 'Consolidación Regional',
+      description:
+        'Expansión de la distribución a toda la provincia de La Pampa. Incorporación de nueva línea de productos.',
+    },
+    {
+      year: '1998',
+      title: 'Innovación en Refrigeración',
+      description:
+        'Implementación de moderno sistema de refrigeración y ampliación de la flota de distribución.',
+    },
+    {
+      year: '2005',
+      title: 'Centro de Distribución',
+      description:
+        'Inauguración del centro de distribución principal con cámaras frigoríficas de última generación.',
+    },
+    {
+      year: '2015',
+      title: 'Certificación de Calidad',
+      description:
+        'Obtención de certificaciones internacionales de calidad y seguridad alimentaria.',
+    },
+    {
+      year: '2020',
+      title: 'Transformación Digital',
+      description:
+        'Implementación de sistema de pedidos online y modernización de la logística.',
+    },
+    {
+      year: '2025',
+      title: 'Visión de Futuro',
+      description:
+        'Proyecto de expansión nacional y desarrollo de nuevas líneas de productos sustentables.',
     },
   ]
 
@@ -77,7 +99,7 @@ function Nosotros() {
                 Nuestra Historia
               </Typography>
               <Typography paragraph>
-                Desde 1968, Picomar ha sido sinónimo de excelencia en la
+                Desde 1961, Picomar ha sido sinónimo de excelencia en la
                 distribución de productos del mar. Todo comenzó con un pequeño
                 puesto en el mercado local de General Pico, La Pampa, donde Don
                 Roberto Martínez compartía su pasión por los mariscos frescos.

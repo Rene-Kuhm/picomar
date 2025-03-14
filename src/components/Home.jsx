@@ -1,3 +1,6 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
   Box,
   Container,
@@ -26,8 +29,77 @@ import workerImage from '../assets/480807899_1144446504147624_875217194000653829
 import salmonImage from '../assets/481175936_1148146223777652_8805090957314308641_n.jpg'
 import { WaveText } from '../styles/TextEffects'
 import { Link } from 'react-router-dom'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { EffectCoverflow, Autoplay, Pagination } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/effect-coverflow'
+import 'swiper/css/pagination'
+import ParallaxSection from './ParallaxSection'
+
+gsap.registerPlugin(ScrollTrigger)
 
 function Home() {
+  const productsRef = useRef(null)
+  const leftCardsRef = useRef([])
+  const rightCardsRef = useRef([])
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    })
+
+    // Animación para las cards de la izquierda
+    leftCardsRef.current.forEach((card) => {
+      gsap.fromTo(
+        card,
+        {
+          x: -100,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top bottom-=100',
+            end: 'top center',
+            scrub: 1,
+          },
+        },
+      )
+    })
+
+    // Animación para las cards de la derecha
+    rightCardsRef.current.forEach((card) => {
+      gsap.fromTo(
+        card,
+        {
+          x: 100,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top bottom-=100',
+            end: 'top center',
+            scrub: 1,
+          },
+        },
+      )
+    })
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+    }
+  }, [])
+
   const products = [
     { name: 'Camarón', image: camaronImage },
     { name: 'Pescado', image: pescadoImage },
@@ -37,21 +109,10 @@ function Home() {
 
   return (
     <Box>
-      <StyledHero backgroundimage={heroImage}>
+      <ParallaxSection bgImage={heroImage}>
         <Container maxWidth='lg'>
           <StyledContent>
-            <WaveText
-              component='h1'
-              sx={{
-                mb: 3,
-                fontSize: { xs: '3rem', md: '4.5rem' },
-                '@media (max-width: 600px)': {
-                  fontSize: '2.5rem',
-                },
-              }}
-            >
-              Picomar
-            </WaveText>
+            <WaveText>Picomar</WaveText>
             <Typography
               variant='h2'
               sx={{
@@ -61,7 +122,7 @@ function Home() {
                 letterSpacing: '0.05em',
               }}
             >
-              Tradición y Calidad en Productos del Mar
+              Tradición y Calidad en Productos del Mar . Desde 1961 uniendo la pampa y el mar
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <Button
@@ -77,6 +138,7 @@ function Home() {
                   fontWeight: 600,
                   borderRadius: '12px',
                   background: 'linear-gradient(90deg, #F59E0B, #D97706)',
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   '&:hover': {
                     background: 'linear-gradient(90deg, #FBBF24, #F59E0B)',
                     transform: 'translateY(-3px)',
@@ -110,119 +172,149 @@ function Home() {
         </Container>
         <WaveContainer>
           <svg
+            data-name='Layer 1'
             xmlns='http://www.w3.org/2000/svg'
-            viewBox='0 0 1440 320'
-            preserveAspectRatio='none' // Añadido para mejor estiramiento
+            viewBox='0 0 1200 120'
+            preserveAspectRatio='none'
           >
-            <path d='M0,160L34.3,149.3C68.6,139,137,117,206,144C274.3,171,343,245,411,277.3C480,309,549,299,617,282.7C685.7,267,754,245,823,218.7C891.4,192,960,160,1029,176C1097.1,192,1166,256,1234,282.7C1302.9,309,1371,299,1406,293.3L1440,288L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z' />
+            <path
+              d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z'
+              className='shape-fill'
+            ></path>
+            <path
+              d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-58,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z'
+              className='shape-fill'
+              style={{ opacity: 0.5 }}
+            ></path>
           </svg>
         </WaveContainer>
-      </StyledHero>
+      </ParallaxSection>
 
       <Container maxWidth='lg' sx={{ my: 8 }}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
-            <ProductCard>
-              <CardMedia
-                component='img'
-                image={product1Image}
-                alt='Seafood product'
-                sx={{
-                  objectFit: 'cover',
-                  overflow: 'hidden',
-                }}
-              />
-              <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
-                <Typography variant='h5' gutterBottom>
-                  Calidad y Frescura
-                </Typography>
-                <Typography>
-                  Nuestros productos son seleccionados cuidadosamente para
-                  garantizar la mejor calidad.
-                </Typography>
-              </CardContent>
-            </ProductCard>
+            <Box ref={(el) => (leftCardsRef.current[0] = el)}>
+              <ProductCard>
+                <CardMedia
+                  component='img'
+                  image={product1Image}
+                  alt='Seafood product'
+                  sx={{
+                    objectFit: 'cover',
+                    overflow: 'hidden',
+                  }}
+                />
+                <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
+                  <Typography variant='h5' gutterBottom>
+                    Calidad y Frescura
+                  </Typography>
+                  <Typography>
+                    Nuestros productos son seleccionados cuidadosamente para
+                    garantizar la mejor calidad.
+                  </Typography>
+                </CardContent>
+              </ProductCard>
+            </Box>
           </Grid>
           <Grid item xs={12} md={6}>
-            <ProductCard>
-              <CardContent
-                sx={{
-                  flexGrow: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  p: 4,
-                }}
-              >
-                <Typography variant='h5' gutterBottom>
-                  ¿Quiere Vender Nuestros Productos?
-                </Typography>
-                <Typography sx={{ mb: 3 }}>
-                  Únase a nuestra red de distribuidores y crezca con nosotros.
-                </Typography>
-                <Button variant='contained' color='primary' size='large'>
-                  Contáctenos
-                </Button>
-              </CardContent>
-            </ProductCard>
+            <Box ref={(el) => (rightCardsRef.current[0] = el)}>
+              <ProductCard>
+                <CardMedia
+                  component='img'
+                  image={product1Image}
+                  alt='Seafood product'
+                  sx={{
+                    objectFit: 'cover',
+                    overflow: 'hidden',
+                  }}
+                />
+                <CardContent sx={{ flexGrow: 1, textAlign: 'center' }}>
+                  <Typography variant='h5' gutterBottom>
+                    Calidad y Frescura
+                  </Typography>
+                  <Typography>
+                    Nuestros productos son seleccionados cuidadosamente para
+                    garantizar la mejor calidad.
+                  </Typography>
+                </CardContent>
+              </ProductCard>
+            </Box>
           </Grid>
         </Grid>
       </Container>
 
       <Container maxWidth='lg' sx={{ my: 8 }}>
-        <Typography variant='h2' textAlign='center' gutterBottom>
+        <Typography
+          variant='h2'
+          textAlign='center'
+          gutterBottom
+          data-aos='fade-up'
+        >
           Nuestros Productos
         </Typography>
-        <Grid container spacing={3}>
-          {products.map((product) => (
-            <Grid item xs={12} sm={6} md={3} key={product.name}>
-              <ProductCard>
-                <Box sx={{ overflow: 'hidden' }}>
-                  <CardMedia
-                    component='img'
-                    height='250'
-                    image={product.image}
-                    alt={product.name}
-                    sx={{
-                      objectFit: 'cover',
-                      transform: 'scale(1.1)',
-                    }}
-                  />
+        <Box ref={productsRef}>
+          <Grid container spacing={3}>
+            {products.map((product, index) => (
+              <Grid item xs={12} sm={6} md={3} key={product.name}>
+                <Box
+                  ref={(el) => {
+                    if (index % 2 === 0) {
+                      leftCardsRef.current[index + 1] = el
+                    } else {
+                      rightCardsRef.current[index + 1] = el
+                    }
+                  }}
+                >
+                  <ProductCard>
+                    <Box sx={{ overflow: 'hidden' }}>
+                      <CardMedia
+                        component='img'
+                        height='250'
+                        image={product.image}
+                        alt={product.name}
+                        sx={{
+                          objectFit: 'cover',
+                          transform: 'scale(1.1)',
+                        }}
+                      />
+                    </Box>
+                    <CardContent sx={{ textAlign: 'center' }}>
+                      <Typography
+                        variant='h6'
+                        sx={{
+                          mb: 1,
+                          fontWeight: 600,
+                        }}
+                      >
+                        {product.name}
+                      </Typography>
+                      <Button
+                        component={Link}
+                        to='/productos'
+                        variant='contained'
+                        color='primary'
+                        sx={{
+                          mt: 2,
+                          '&:hover': {
+                            transform: 'scale(1.05)',
+                          },
+                        }}
+                      >
+                        Ver Detalles
+                      </Button>
+                    </CardContent>
+                  </ProductCard>
                 </Box>
-                <CardContent sx={{ textAlign: 'center' }}>
-                  <Typography
-                    variant='h6'
-                    sx={{
-                      mb: 1,
-                      fontWeight: 600,
-                    }}
-                  >
-                    {product.name}
-                  </Typography>
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    sx={{
-                      mt: 2,
-                      '&:hover': {
-                        transform: 'scale(1.05)',
-                      },
-                    }}
-                  >
-                    Ver Detalles
-                  </Button>
-                </CardContent>
-              </ProductCard>
-            </Grid>
-          ))}
-        </Grid>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
       </Container>
 
       <WorkerSection>
         <Container maxWidth='lg'>
           <Grid container spacing={4} alignItems='center'>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} data-aos='fade-right'>
               <Box
                 component='img'
                 src={workerImage}
@@ -235,7 +327,7 @@ function Home() {
                 }}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} data-aos='fade-left'>
               <Typography variant='h3' gutterBottom>
                 Expertos en Mariscos
               </Typography>
@@ -248,6 +340,8 @@ function Home() {
                 más altos estándares de calidad y seguridad alimentaria.
               </Typography>
               <Button
+                component={Link}
+                to='/nosotros'
                 variant='contained'
                 color='primary'
                 size='large'
@@ -263,7 +357,7 @@ function Home() {
       <CircularProductSection>
         <Container maxWidth='lg'>
           <Grid container spacing={4} alignItems='center'>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} data-aos='fade-up-right'>
               <Typography variant='h3' gutterBottom>
                 Salmón Premium
               </Typography>
@@ -276,6 +370,8 @@ function Home() {
                 estándares de calidad.
               </Typography>
               <Button
+                component={Link}
+                to='/productos'
                 variant='contained'
                 color='secondary'
                 size='large'
@@ -284,7 +380,7 @@ function Home() {
                 Ver Producto
               </Button>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} data-aos='fade-up-left'>
               <Box
                 component='img'
                 src={salmonImage}

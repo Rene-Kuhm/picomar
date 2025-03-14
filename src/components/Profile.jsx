@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Container,
   Box,
@@ -11,47 +12,61 @@ import {
   Divider,
   LinearProgress,
 } from '@mui/material'
-import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
 import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import PersonIcon from '@mui/icons-material/Person'
 
-// Datos de ejemplo
+// Datos más realistas para Picomar
 const mockOrders = [
   {
-    id: '#ORD001',
-    date: '2024-03-10',
-    total: 15000,
-    status: 'Entregado',
+    id: '#2024001',
+    date: '2024-03-15',
+    total: 25800,
+    status: 'En proceso',
     items: [
-      { name: 'Camarón Premium', quantity: 2, price: 5000 },
-      { name: 'Salmón Fresco', quantity: 1, price: 5000 },
+      { name: 'Langostinos L1', quantity: 2, price: 8500 },
+      { name: 'Salmón Premium', quantity: 1, price: 8800 },
     ],
   },
   {
-    id: '#ORD002',
-    date: '2024-03-15',
-    total: 22000,
-    status: 'En proceso',
+    id: '#2024002',
+    date: '2024-03-14',
+    total: 32500,
+    status: 'Entregado',
     items: [
-      { name: 'Langostinos', quantity: 3, price: 6000 },
-      { name: 'Pulpo', quantity: 1, price: 4000 },
+      { name: 'Calamar Limpio', quantity: 3, price: 4500 },
+      { name: 'Pulpo Español', quantity: 2, price: 9500 },
     ],
   },
-  // ...más pedidos
+  {
+    id: '#2024003',
+    date: '2024-03-10',
+    total: 28900,
+    status: 'Entregado',
+    items: [
+      { name: 'Merluza Fresca', quantity: 5, price: 3200 },
+      { name: 'Camarón Pelado', quantity: 2, price: 5850 },
+    ],
+  },
 ]
 
 const mockStats = {
-  week: 37000,
-  month: 89000,
-  year: 450000,
+  week: 87200,
+  month: 245000,
+  year: 1250000,
 }
 
 function Profile() {
   const [activeTab, setActiveTab] = useState(0)
   const { user } = useAuth()
+
+  const handleTabChange = (event, newValue) => {
+    if (newValue !== undefined) {
+      setActiveTab(newValue)
+    }
+  }
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -66,19 +81,87 @@ function Profile() {
     }
   }
 
+  const DeliveryProgress = ({ progress }) => (
+    <Box sx={{ position: 'relative', mt: 2 }}>
+      <Typography variant='body2' color='text.secondary' gutterBottom>
+        Estado del envío
+      </Typography>
+      <Box
+        sx={{
+          position: 'relative',
+          height: '40px',
+          backgroundColor: '#f0f0f0',
+          borderRadius: '20px',
+          overflow: 'hidden',
+        }}
+      >
+        <LinearProgress
+          variant='determinate'
+          value={progress}
+          sx={{
+            height: '100%',
+            backgroundColor: 'rgba(0, 56, 118, 0.1)',
+            '& .MuiLinearProgress-bar': {
+              backgroundColor: 'primary.main',
+              backgroundImage:
+                'linear-gradient(45deg, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent)',
+              backgroundSize: '40px 40px',
+              animation: 'progress-animation 1s linear infinite',
+            },
+          }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: `calc(${progress}% - 20px)`,
+            transform: 'translateY(-50%)',
+            transition: 'all 0.3s ease',
+            zIndex: 2,
+          }}
+        >
+          <LocalShippingIcon
+            sx={{
+              color: 'primary.main',
+              fontSize: '28px',
+              transform: 'scaleX(1)', // El carro mira hacia la derecha
+              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
+            }}
+          />
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          mt: 1,
+          px: 1,
+        }}
+      >
+        <Typography variant='caption'>Pedido realizado</Typography>
+        <Typography variant='caption'>En camino</Typography>
+        <Typography variant='caption'>Entregado</Typography>
+      </Box>
+    </Box>
+  )
+
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Container maxWidth="lg" sx={{ py: 6, flex: 1 }}>
+    <div
+      style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+    >
+      <Container maxWidth='lg' sx={{ py: 6, flex: 1 }}>
         <Grid container spacing={4}>
           {/* Perfil Header */}
           <Grid item xs={12}>
             <Paper sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 3 }}>
               <Avatar sx={{ width: 80, height: 80, bgcolor: 'primary.main' }}>
-                <PersonIcon fontSize="large" />
+                <PersonIcon fontSize='large' />
               </Avatar>
               <Box>
-                <Typography variant="h4">{user?.nombre} {user?.apellido}</Typography>
-                <Typography color="text.secondary">{user?.email}</Typography>
+                <Typography variant='h4'>
+                  {user?.nombre} {user?.apellido}
+                </Typography>
+                <Typography color='text.secondary'>{user?.email}</Typography>
               </Box>
             </Paper>
           </Grid>
@@ -88,30 +171,30 @@ function Profile() {
             <Grid container spacing={3}>
               <Grid item xs={12} md={4}>
                 <Paper sx={{ p: 3 }}>
-                  <Typography variant="subtitle2" color="text.secondary">
+                  <Typography variant='subtitle2' color='text.secondary'>
                     Gasto Semanal
                   </Typography>
-                  <Typography variant="h4" color="primary">
+                  <Typography variant='h4' color='primary'>
                     ${mockStats.week.toLocaleString()}
                   </Typography>
                 </Paper>
               </Grid>
               <Grid item xs={12} md={4}>
                 <Paper sx={{ p: 3 }}>
-                  <Typography variant="subtitle2" color="text.secondary">
+                  <Typography variant='subtitle2' color='text.secondary'>
                     Gasto Mensual
                   </Typography>
-                  <Typography variant="h4" color="primary">
+                  <Typography variant='h4' color='primary'>
                     ${mockStats.month.toLocaleString()}
                   </Typography>
                 </Paper>
               </Grid>
               <Grid item xs={12} md={4}>
                 <Paper sx={{ p: 3 }}>
-                  <Typography variant="subtitle2" color="text.secondary">
+                  <Typography variant='subtitle2' color='text.secondary'>
                     Gasto Anual
                   </Typography>
-                  <Typography variant="h4" color="primary">
+                  <Typography variant='h4' color='primary'>
                     ${mockStats.year.toLocaleString()}
                   </Typography>
                 </Paper>
@@ -122,20 +205,28 @@ function Profile() {
           {/* Pedidos */}
           <Grid item xs={12}>
             <Paper sx={{ p: 3 }}>
-              <Tabs value={activeTab} onChange={(e, v) => setActiveTab(v)} sx={{ mb: 3 }}>
-                <Tab label="Pedidos Recientes" />
-                <Tab label="En Proceso" />
-                <Tab label="Historial" />
+              <Tabs
+                value={activeTab}
+                onChange={handleTabChange}
+                sx={{ mb: 3 }}
+              >
+                <Tab label='Pedidos Recientes' />
+                <Tab label='En Proceso' />
+                <Tab label='Historial' />
               </Tabs>
 
               {mockOrders.map((order, index) => (
                 <Box key={order.id} sx={{ mb: 3 }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      mb: 2,
+                    }}
+                  >
                     <Box>
-                      <Typography variant="h6">
-                        Pedido {order.id}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography variant='h6'>Pedido {order.id}</Typography>
+                      <Typography variant='body2' color='text.secondary'>
                         Fecha: {new Date(order.date).toLocaleDateString()}
                       </Typography>
                     </Box>
@@ -145,7 +236,7 @@ function Profile() {
                         color={getStatusColor(order.status)}
                         sx={{ mb: 1 }}
                       />
-                      <Typography variant="h6" color="primary">
+                      <Typography variant='h6' color='primary'>
                         ${order.total.toLocaleString()}
                       </Typography>
                     </Box>
@@ -153,19 +244,19 @@ function Profile() {
 
                   <Box sx={{ mb: 2 }}>
                     {order.items.map((item, idx) => (
-                      <Typography key={idx} variant="body2" color="text.secondary">
-                        {item.quantity}x {item.name} - ${item.price.toLocaleString()}
+                      <Typography
+                        key={idx}
+                        variant='body2'
+                        color='text.secondary'
+                      >
+                        {item.quantity}x {item.name} - $
+                        {item.price.toLocaleString()}
                       </Typography>
                     ))}
                   </Box>
 
                   {order.status === 'En proceso' && (
-                    <Box sx={{ mt: 2 }}>
-                      <Typography variant="body2" color="text.secondary" gutterBottom>
-                        Estado del envío
-                      </Typography>
-                      <LinearProgress variant="determinate" value={60} />
-                    </Box>
+                    <DeliveryProgress progress={60} />
                   )}
 
                   {index < mockOrders.length - 1 && <Divider sx={{ mt: 2 }} />}

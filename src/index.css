@@ -63,3 +63,23 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Swiper styles */
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #003876;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* AOS custom animations */
+[data-aos] {
+  pointer-events: none;
+}
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
