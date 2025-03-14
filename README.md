@@ -87,4 +87,38 @@ Plataforma de comercio electrónico especializada en productos del mar, con más
 - Custom theme
 - Responsive design
 
+## Performance
+
+La aplicación ha sido optimizada para ofrecer la mejor experiencia de usuario posible. Los resultados de PageSpeed Insights muestran un excelente rendimiento tanto en dispositivos móviles como de escritorio.
+
+### Dispositivos Móviles
+
+![PageSpeed Mobile](/images/mobile-performance.jpg)
+
+- Performance: 98
+- Accesibilidad: 96
+- Mejores Prácticas: 95
+- SEO: 100
+
+### Escritorio
+
+![PageSpeed Desktop](/images/desktop-performance.jpg)
+
+- Performance: 99
+- Accesibilidad: 96
+- Mejores Prácticas: 95
+- SEO: 100
+
+### Optimizaciones Implementadas
+
+- Lazy loading de imágenes
+- Código dividido (code splitting)
+- Compresión de assets
+- Optimización de fuentes
+- Caché efectivo
+- Minificación de CSS/JS
+- Imágenes optimizadas
+- Server-side rendering
+- PWA ready
+
 ## Estructura del Proyecto
